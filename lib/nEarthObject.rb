@@ -6,5 +6,5 @@ class NearEarthObject
   end
 end
 
-space = NearEarthObject.new.nEarthObjectService "2015-09-07", "2015-09-08"
+space = NearEarthObject.new.nEarthObjectService "2015-09-07", ""
 puts space.data

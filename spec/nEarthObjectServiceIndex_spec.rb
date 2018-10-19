@@ -2,7 +2,7 @@ require_relative "../lib/nEarthObject.rb"
 
 describe "NASA N.E.O API" do
   before(:all) do
-    @response = NearEarthObject.new.nEarthObjectService "2015-09-07", "2015-09-08"
+    @response = NearEarthObject.new.nEarthObjectService "2015-09-07", "2015-09-10"
     @data = @response.data
   end
 
@@ -14,6 +14,17 @@ describe "NASA N.E.O API" do
     it "the hash should be of length 3" do
       expect(@data.length).to eq 3
     end
+
+    it "element_count should return an int" do
+      expect(@data["element_count"]).to be_an Integer
+    end
+
+    context "near_earth_objects property" do
+      it "should contain one element for each day searched" do
+
+      end
+    end
+
 
   #   it "should contain an array" do
   #     expect(@response).to all(be_an Array)
@@ -96,4 +107,5 @@ describe "NASA N.E.O API" do
   #     expect(@response["coord"]["lat"]).to be_a Float
   #   end
   end
+
 end

@@ -19,12 +19,20 @@ describe "NASA N.E.O API" do
       expect(@data["element_count"]).to be_an Integer
     end
 
-    context "near_earth_objects property" do
-      it "should contain one element for each day searched" do
-
-      end
+    it "should have access to setDaysInSearch" do
+      expect(@response).to respond_to :setDaysInSearch
     end
 
+    it "should have an integer value assigned to @daysInSearch" do
+      expect(@response.daysInSearch).to be_an Integer
+    end
+  end
+
+  context "near_earth_objects property" do
+    it "should contain one element for each day searched" do
+      expect(@data["near_earth_objects"].length).to eq @response.daysInSearch
+    end
+  end
 
   #   it "should contain an array" do
   #     expect(@response).to all(be_an Array)
@@ -106,6 +114,5 @@ describe "NASA N.E.O API" do
   #   it "should contain a float within 'lat'" do
   #     expect(@response["coord"]["lat"]).to be_a Float
   #   end
-  end
 
 end

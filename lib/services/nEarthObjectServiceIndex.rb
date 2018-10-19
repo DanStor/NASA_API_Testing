@@ -13,7 +13,7 @@ class NearEarthObjectService
     apiKey = "q3HSQGbNfVKrxDojtxa418dRmWCLMKRHlQrivEIz"
     @data = JSON.parse(self.class.get("?start_date=#{sDate}&end_date=#{eDate}&detailed=true&api_key=#{apiKey}").body)
 
-    setDaysInSearch sDate, eDate
+    self.setDaysInSearch sDate, eDate
   end
 
   # Calculates the number of days in the search parameters
@@ -22,4 +22,5 @@ class NearEarthObjectService
     eDate = Date.parse(eDate)
     @daysInSearch = (eDate - sDate + 1).to_i
   end
+
 end

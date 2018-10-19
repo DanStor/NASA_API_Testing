@@ -2,97 +2,98 @@ require_relative "../lib/nEarthObject.rb"
 
 describe "NASA N.E.O API" do
   before(:all) do
-    @response = NearEarthObject.new.nEarthObjectService
+    @response = NearEarthObject.new.nEarthObjectService "2015-09-07", "2015-09-08"
+    @data = @response.data
   end
 
   context "Day Weather Properties" do
     it "should contain an hash" do
-      expect(@city).to be_a Hash
+      expect(@data).to be_a Hash
     end
 
-  #   it "the hash should be of length 12" do
-  #     expect(@city.length).to eq 12
-  #   end
-  #
+    it "the hash should be of length 3" do
+      expect(@data.length).to eq 3
+    end
+
   #   it "should contain an array" do
-  #     expect(@city).to all(be_an Array)
+  #     expect(@response).to all(be_an Array)
   #   end
   #
   #   it "should contain 'coord' property" do
-  #     expect(@city).to have_key "coord"
+  #     expect(@response).to have_key "coord"
   #   end
   #
   #   it "should contain 'weather' property" do
-  #     expect(@city).to have_key "weather"
+  #     expect(@response).to have_key "weather"
   #   end
   #
   #   it "should contain 'base' property" do
-  #     expect(@city).to have_key "base"
+  #     expect(@response).to have_key "base"
   #   end
   #
   #   it "should contain 'main' property" do
-  #     expect(@city).to have_key "main"
+  #     expect(@response).to have_key "main"
   #   end
   #
   #   it "should contain 'visibility' property" do
-  #     expect(@city).to have_key "visibility"
+  #     expect(@response).to have_key "visibility"
   #   end
   #
   #   it "should contain 'wind' property" do
-  #     expect(@city).to have_key "wind"
+  #     expect(@response).to have_key "wind"
   #   end
   #
   #   it "should contain 'clouds' property" do
-  #     expect(@city).to have_key "clouds"
+  #     expect(@response).to have_key "clouds"
   #   end
   #
   #   it "should contain 'dt' property" do
-  #     expect(@city).to have_key "dt"
+  #     expect(@response).to have_key "dt"
   #   end
   #
   #   it "should contain 'sys' property" do
-  #     expect(@city).to have_key "sys"
+  #     expect(@response).to have_key "sys"
   #   end
   #
   #   it "should contain 'id' property" do
-  #     expect(@city).to have_key "id"
+  #     expect(@response).to have_key "id"
   #   end
   #
   #   it "should contain 'name' property" do
-  #     expect(@city).to have_key "name"
+  #     expect(@response).to have_key "name"
   #   end
   #
   #   it "should contain 'cod' property" do
-  #     expect(@city).to have_key "cod"
+  #     expect(@response).to have_key "cod"
   #   end
   #
   # end
   #
   # context "id" do
   #   it "should be an integer" do
-  #     expect(@city["id"]).to be_an Integer
+  #     expect(@response["id"]).to be_an Integer
   #   end
   # end
   #
   # context "coord" do
   #   it "should contain 2 properties" do
-  #     expect(@city["coord"].length).to eq 2
+  #     expect(@response["coord"].length).to eq 2
   #   end
   #
   #   it "should contain propterty 'lon'" do
-  #     expect(@city["coord"]).to have_key "lon"
+  #     expect(@response["coord"]).to have_key "lon"
   #   end
   #
   #   it "should contain a float within 'lon'" do
-  #     expect(@city["coord"]["lon"]).to be_a Float
+  #     expect(@response["coord"]["lon"]).to be_a Float
   #   end
   #
   #   it "should contain propterty 'lat'" do
-  #     expect(@city["coord"]).to have_key "lat"
+  #     expect(@response["coord"]).to have_key "lat"
   #   end
   #
   #   it "should contain a float within 'lat'" do
-  #     expect(@city["coord"]["lat"]).to be_a Float
+  #     expect(@response["coord"]["lat"]).to be_a Float
   #   end
   end
 end

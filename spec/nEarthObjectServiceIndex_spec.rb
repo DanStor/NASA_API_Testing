@@ -2,8 +2,8 @@ require_relative "../lib/nEarthObject.rb"
 
 describe "NASA N.E.O API" do
   before(:all) do
-    @response = NearEarthObject.new.nEarthObjectService "2015-09-07", "2015-09-10"
-    @data = @response.data
+    @service = NearEarthObject.new.nEarthObjectService "2015-09-07", "2015-09-10"
+    @data = @service.data
   end
 
   context "Day Weather Properties" do
@@ -20,99 +20,114 @@ describe "NASA N.E.O API" do
     end
 
     it "should have access to setDaysInSearch" do
-      expect(@response).to respond_to :setDaysInSearch
+      expect(@service).to respond_to :setDaysInSearch
     end
 
     it "should have an integer value assigned to @daysInSearch" do
-      expect(@response.daysInSearch).to be_an Integer
+      expect(@service.daysInSearch).to be_an Integer
+    end
+
+    it "should get a value greater than 1 for @daysInSearch" do
+      expect(@service.daysInSearch).to be > 0
     end
   end
 
   context "near_earth_objects property" do
     it "should contain one element for each day searched" do
-      expect(@data["near_earth_objects"].length).to eq @response.daysInSearch
+      expect(@data["near_earth_objects"].length).to eq @service.daysInSearch
     end
   end
 
+  context "dates within near_earth_objects" do
+    it "should contain many items with 11 properties" do
+      @service.getNearEarthDates.each do |dateInfo|
+        puts dateInfo.length
+        expect(dateInfo.length).to eq 11
+      end
+    end
+
+    it "should have the propterty: "
+  end
+
   #   it "should contain an array" do
-  #     expect(@response).to all(be_an Array)
+  #     expect(@service).to all(be_an Array)
   #   end
   #
   #   it "should contain 'coord' property" do
-  #     expect(@response).to have_key "coord"
+  #     expect(@service).to have_key "coord"
   #   end
   #
   #   it "should contain 'weather' property" do
-  #     expect(@response).to have_key "weather"
+  #     expect(@service).to have_key "weather"
   #   end
   #
   #   it "should contain 'base' property" do
-  #     expect(@response).to have_key "base"
+  #     expect(@service).to have_key "base"
   #   end
   #
   #   it "should contain 'main' property" do
-  #     expect(@response).to have_key "main"
+  #     expect(@service).to have_key "main"
   #   end
   #
   #   it "should contain 'visibility' property" do
-  #     expect(@response).to have_key "visibility"
+  #     expect(@service).to have_key "visibility"
   #   end
   #
   #   it "should contain 'wind' property" do
-  #     expect(@response).to have_key "wind"
+  #     expect(@service).to have_key "wind"
   #   end
   #
   #   it "should contain 'clouds' property" do
-  #     expect(@response).to have_key "clouds"
+  #     expect(@service).to have_key "clouds"
   #   end
   #
   #   it "should contain 'dt' property" do
-  #     expect(@response).to have_key "dt"
+  #     expect(@service).to have_key "dt"
   #   end
   #
   #   it "should contain 'sys' property" do
-  #     expect(@response).to have_key "sys"
+  #     expect(@service).to have_key "sys"
   #   end
   #
   #   it "should contain 'id' property" do
-  #     expect(@response).to have_key "id"
+  #     expect(@service).to have_key "id"
   #   end
   #
   #   it "should contain 'name' property" do
-  #     expect(@response).to have_key "name"
+  #     expect(@service).to have_key "name"
   #   end
   #
   #   it "should contain 'cod' property" do
-  #     expect(@response).to have_key "cod"
+  #     expect(@service).to have_key "cod"
   #   end
   #
   # end
   #
   # context "id" do
   #   it "should be an integer" do
-  #     expect(@response["id"]).to be_an Integer
+  #     expect(@service["id"]).to be_an Integer
   #   end
   # end
   #
   # context "coord" do
   #   it "should contain 2 properties" do
-  #     expect(@response["coord"].length).to eq 2
+  #     expect(@service["coord"].length).to eq 2
   #   end
   #
   #   it "should contain propterty 'lon'" do
-  #     expect(@response["coord"]).to have_key "lon"
+  #     expect(@service["coord"]).to have_key "lon"
   #   end
   #
   #   it "should contain a float within 'lon'" do
-  #     expect(@response["coord"]["lon"]).to be_a Float
+  #     expect(@service["coord"]["lon"]).to be_a Float
   #   end
   #
   #   it "should contain propterty 'lat'" do
-  #     expect(@response["coord"]).to have_key "lat"
+  #     expect(@service["coord"]).to have_key "lat"
   #   end
   #
   #   it "should contain a float within 'lat'" do
-  #     expect(@response["coord"]["lat"]).to be_a Float
+  #     expect(@service["coord"]["lat"]).to be_a Float
   #   end
 
 end

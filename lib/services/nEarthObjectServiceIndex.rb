@@ -23,4 +23,11 @@ class NearEarthObjectService
     @daysInSearch = (eDate - sDate + 1).to_i
   end
 
+  def getNearEarthDates
+    dateArray = []
+    @data["near_earth_objects"].each_key do |date|
+      dateArray.push(date)
+    end
+    return dateArray
+  end
 end
